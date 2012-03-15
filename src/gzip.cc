@@ -22,7 +22,6 @@
  */
 
 #include <node.h>
-#include <node_events.h>
 #include <node_buffer.h>
 #include <assert.h>
 #include <string.h>
@@ -115,6 +114,7 @@ const char GzipUtils::VersionError[] = "Z_VERSION_ERROR: "
 class GzipImpl {
   friend class ZipLib<GzipImpl>;
 
+ public:
   typedef GzipUtils Utils;
   typedef GzipUtils::Blob Blob;
 
@@ -215,6 +215,7 @@ typedef ZipLib<GzipImpl> Gzip;
 class GunzipImpl {
   friend class ZipLib<GunzipImpl>;
 
+ public:
   typedef GzipUtils Utils;
   typedef GzipUtils::Blob Blob;
 
