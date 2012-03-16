@@ -20,7 +20,7 @@
  * IN THE SOFTWARE.
  */
 
-var sys = require('sys');
+var util = require('util');
 var compress=require("../lib/compress");
 var Stream = require('stream').Stream;
 
@@ -34,19 +34,18 @@ Stream.prototype.pipe.call(gzipper, gunzipper);
 Stream.prototype.pipe.call(gunzipper, process.stdout, {end:false});
 
 gunzipper.once('end', function flushStdout() {
-  sys.puts("-- all done");
-  process.stdout.end();
+  console.log("-- all done");
 });
 
 //console.log({gzipper:gzipper, gunzipper:gunzipper, stdout:process.stdout});
 
-sys.puts("-- starting");
+console.log("-- starting");
 gzipper.write(new Buffer("Here is the first chunk.\n"));
 setTimeout(function() {
-  sys.puts("-- tick");
+  console.log("-- tick");
   gzipper.write(new Buffer("Here is the next chunk.\n"));
   setTimeout(function() {
-    sys.puts("-- tock");
+    console.log("-- tock");
     gzipper.write(new Buffer("Here is the final chunk.\n"));
     gzipper.end();
   }, 500);
